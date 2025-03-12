@@ -78,12 +78,13 @@ class BrowserService {
    * @param {string} urlPath - アクセスするパス
    * @param {string} deviceType - デバイスタイプ（PC/SP）
    */
-  async takeScreenshot(urlPath, deviceType) {
+  async takeScreenshot(url, deviceType) {
     try {
-      const baseUrl = 'https://odhistory.shopping.yahoo.co.jp';
-      const fullUrl = `${baseUrl}${urlPath}`;
+      // URLからパス部分を抽出
+      const urlObj = new URL(url);
+      const urlPath = urlObj.pathname;
       
-      await this.page.goto(fullUrl);
+      await this.page.goto(url);
       
       // ページ全体が表示されるまで待機
       await this.page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
@@ -95,7 +96,7 @@ class BrowserService {
         quality: 90
       });
       
-      await saveScreenshot(screenshot, urlPath, deviceType);
+      await saveScreenshot(screenshot, urlPath || '/unknown', deviceType);
     } catch (error) {
       console.error('スクリーンショット取得でエラーが発生しました:', error);
       throw error;

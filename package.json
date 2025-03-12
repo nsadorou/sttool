@@ -1,0 +1,20 @@
+{
+  "name": "sttool",
+  "version": "1.0.0",
+  "description": "## 概要 Yahoo!ショッピングの注文履歴ページにアクセスし、スクリーンショットを取得するツールです。 PC/SPの両方のビューに対応しており、初回実行時にクッキーを保存して再利用します。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^13.1.0",
+    "playwright": "^1.51.0"
+  },
+  "bin": {
+    "sttool": "src/index.js"
+  }
+}
